@@ -213,7 +213,7 @@ The performance of the models was evaluated using [accuracy](https://github.com/
 
 ## 5.2 Comparison of Different Models and Parameters
 
-Different models and parameters were compared to identify the best performing model. This involved training a baseline [Gradient Boosted Trees (GBT)](https://github.com/rexcoleman/Data-Science-Model-Selection-in-Cybersecurity/blob/main/README.md#gradient-boosting-machines-gbm) model using TensorFlow Decision Forests with default parameters, then improving these parameters, tuning the hyperparameters, and finally creating an ensemble of models.
+Different models and parameters were compared to identify the best performing model. This involved training a baseline [Gradient Boosted Trees (GBT) / Gradient Boosting Machines (GBM)](https://github.com/rexcoleman/Data-Science-Model-Selection-in-Cybersecurity/blob/main/README.md#gradient-boosting-machines-gbm) model using TensorFlow Decision Forests with default parameters, then improving these parameters, tuning the hyperparameters, and finally creating an ensemble of models.
 
 ## 5.3 Final Model Selection and Justification
 
