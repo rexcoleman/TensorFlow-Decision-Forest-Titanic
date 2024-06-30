@@ -114,4 +114,73 @@ Model ensembling involves combining multiple models to improve overall performan
 - **Stacking**: Training a meta-model on the predictions of several base models to achieve better performance.
 - **Bagging and Boosting**: Implementing methods like Bagging (Bootstrap Aggregating) and Boosting to reduce variance and bias in the model.
 
+## 4. Hyperparameters Evaluated
+
+### 4.1 List of Hyperparameters Considered
+
+In this project, several hyperparameters were considered to optimize the performance of the TensorFlow Decision Forests model. These hyperparameters include:
+- `min_examples`
+- `categorical_algorithm`
+- `growing_strategy`
+- `max_depth`
+- `max_num_nodes`
+- `shrinkage`
+- `num_candidate_attributes_ratio`
+- `split_axis`
+- `sparse_oblique_normalization`
+- `sparse_oblique_weights`
+- `sparse_oblique_num_projections_exponent`
+
+### 4.2 Range of Values Explored for Each Hyperparameter
+
+The range of values explored for each hyperparameter during the tuning process is as follows:
+
+- **min_examples**: [2, 5, 7, 10]
+- **categorical_algorithm**: ["CART", "RANDOM"]
+- **growing_strategy**: ["LOCAL", "BEST_FIRST_GLOBAL"]
+    - **max_depth** (within `LOCAL` strategy): [3, 4, 5, 6, 8]
+    - **max_num_nodes** (within `BEST_FIRST_GLOBAL` strategy): [16, 32, 64, 128, 256]
+- **shrinkage**: [0.02, 0.05, 0.10, 0.15]
+- **num_candidate_attributes_ratio**: [0.2, 0.5, 0.9, 1.0]
+- **split_axis**: ["AXIS_ALIGNED", "SPARSE_OBLIQUE"]
+    - **sparse_oblique_normalization**: ["NONE", "STANDARD_DEVIATION", "MIN_MAX"]
+    - **sparse_oblique_weights**: ["BINARY", "CONTINUOUS"]
+    - **sparse_oblique_num_projections_exponent**: [1.0, 1.5]
+
+### 4.3 Impact of Each Hyperparameter on Model Performance
+
+The impact of each hyperparameter on model performance was assessed by evaluating the accuracy and loss metrics for different configurations:
+
+- **min_examples**: A higher value can reduce overfitting but may miss finer patterns in the data.
+- **categorical_algorithm**: The choice between "CART" and "RANDOM" affects how categorical features are handled, influencing model complexity and performance.
+- **growing_strategy**: "LOCAL" strategy focuses on depth, while "BEST_FIRST_GLOBAL" focuses on node count, both impacting the model's ability to generalize.
+    - **max_depth**: Deeper trees can capture more complex patterns but are prone to overfitting.
+    - **max_num_nodes**: More nodes allow for finer decision boundaries but increase model complexity.
+- **shrinkage**: Controls the learning rate; lower values prevent overfitting but may require more iterations.
+- **num_candidate_attributes_ratio**: A higher ratio can improve performance by considering more features but increases computation.
+- **split_axis**: Different strategies for splitting can capture different types of feature interactions.
+    - **sparse_oblique_normalization**: Impacts the normalization technique used for oblique splits.
+    - **sparse_oblique_weights**: Determines whether weights are binary or continuous.
+    - **sparse_oblique_num_projections_exponent**: Affects the number of projections considered for sparse oblique splits.
+
+### 4.4 Final Hyperparameter Settings Used
+
+The final hyperparameter settings used in the model after tuning were as follows:
+
+- **min_examples**: 5
+- **categorical_algorithm**: "CART"
+- **growing_strategy**: "BEST_FIRST_GLOBAL"
+    - **max_depth**: Not applicable (using `BEST_FIRST_GLOBAL`)
+    - **max_num_nodes**: 64
+- **shrinkage**: 0.10
+- **num_candidate_attributes_ratio**: 0.9
+- **split_axis**: "AXIS_ALIGNED"
+    - **sparse_oblique_normalization**: Not applicable
+    - **sparse_oblique_weights**: Not applicable
+    - **sparse_oblique_num_projections_exponent**: Not applicable
+
+The tuned model demonstrated improved performance with these settings, achieving an accuracy of 0.863 and a loss of 0.675 on the validation set.
+
+
+
 
