@@ -120,7 +120,7 @@ Hyperparameter tuning is a crucial step in improving model performance. This inv
 Model ensembling involves combining multiple models to improve overall performance. Techniques used in this project include:
 - **Voting Ensemble**: Combining predictions from multiple models and using a majority vote or averaging to make the final prediction.
 - **Stacking**: Training a meta-model on the predictions of several base models to achieve better performance.
-- **Bagging and Boosting**: Implementing methods like [Bagging (Bootstrap Aggregating)](https://github.com/rexcoleman/Data-Science-Model-Selection-in-Cybersecurity/blob/main/README.md#decision-forests) and Boosting to reduce variance and bias in the model.
+- **Bagging and Boosting**: Implementing methods like [Bagging (Bootstrap Aggregating)]((https://github.com/rexcoleman/Data-Science-Model-Selection-in-Cybersecurity/blob/main/README.md#bootstrap-aggregating-bagging)) and Boosting to reduce variance and bias in the model.
 
 ### 3.6 Relationship Between TF-DF and Decision Forests
 
