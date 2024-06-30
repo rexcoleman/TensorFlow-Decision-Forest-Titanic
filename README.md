@@ -207,7 +207,7 @@ Model ensembling involves combining multiple models to improve overall performan
 
 ## 5.1 Model Performance Metrics
 
-The performance of the models was evaluated using accuracy and [loss](https://github.com/rexcoleman/Data-Science-Model-Selection-in-Cybersecurity/blob/main/README.md#logarithmic-loss-log-loss
+The performance of the models was evaluated using [accuracy](https://github.com/rexcoleman/Data-Science-Model-Selection-in-Cybersecurity/blob/main/README.md#accuracy) and [loss](https://github.com/rexcoleman/Data-Science-Model-Selection-in-Cybersecurity/blob/main/README.md#logarithmic-loss-log-loss
 ) metrics. These metrics help in understanding how well the model is performing on the classification task.
 
 ## 5.2 Comparison of Different Models and Parameters
