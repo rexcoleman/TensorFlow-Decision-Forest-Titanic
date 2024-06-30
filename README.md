@@ -149,19 +149,24 @@ The range of values explored for each hyperparameter during the tuning process i
 
 ### 4.3 Impact of Each Hyperparameter on Model Performance
 
-The impact of each hyperparameter on model performance was assessed by evaluating the accuracy and loss metrics for different configurations:
+The impact of each hyperparameter on model performance was assessed by evaluating the accuracy and loss metrics for different configurations. Here’s a detailed explanation using the Titanic dataset as an example:
 
-- **min_examples**: A higher value can reduce overfitting but may miss finer patterns in the data.
-- **categorical_algorithm**: The choice between "CART" and "RANDOM" affects how categorical features are handled, influencing model complexity and performance.
-- **growing_strategy**: "LOCAL" strategy focuses on depth, while "BEST_FIRST_GLOBAL" focuses on node count, both impacting the model's ability to generalize.
-    - **max_depth**: Deeper trees can capture more complex patterns but are prone to overfitting.
-    - **max_num_nodes**: More nodes allow for finer decision boundaries but increase model complexity.
-- **shrinkage**: Controls the learning rate; lower values prevent overfitting but may require more iterations.
-- **num_candidate_attributes_ratio**: A higher ratio can improve performance by considering more features but increases computation.
-- **split_axis**: Different strategies for splitting can capture different types of feature interactions.
-    - **sparse_oblique_normalization**: Impacts the normalization technique used for oblique splits.
-    - **sparse_oblique_weights**: Determines whether weights are binary or continuous.
-    - **sparse_oblique_num_projections_exponent**: Affects the number of projections considered for sparse oblique splits.
+- **min_examples**: This parameter specifies the minimum number of samples required to make a split in a decision tree. For the Titanic dataset, a higher value (e.g., 10) ensures that splits are made only when there is sufficient data, reducing the risk of overfitting but potentially missing finer patterns in the data.
+
+- **categorical_algorithm**: This determines how categorical features are handled. Options like "CART" and "RANDOM" use different strategies for splitting based on categorical variables. For instance, "CART" might treat the 'Embarked' feature differently than "RANDOM," impacting how the model learns from categorical data.
+
+- **growing_strategy**: Defines how the decision tree is grown. "LOCAL" strategy focuses on controlling tree depth, while "BEST_FIRST_GLOBAL" focuses on the number of nodes. For example, using "BEST_FIRST_GLOBAL" with the Titanic dataset could result in more complex trees that better capture interactions between features like 'Age' and 'Fare'.
+    - **max_depth**: Maximum depth of the tree. Deeper trees can capture more complex patterns. In the Titanic dataset, a max depth of 8 might capture interactions between passenger class, age, and survival, but also risks overfitting.
+    - **max_num_nodes**: Maximum number of nodes in the tree. More nodes allow for finer decision boundaries. Setting this to 64 might enable the model to better distinguish between different groups of passengers.
+
+- **shrinkage**: Also known as the learning rate, this controls the contribution of each tree to the final model. Lower values like 0.02 prevent overfitting by slowing down learning. For the Titanic dataset, this means each tree has a smaller impact, requiring more trees to achieve good performance but improving generalization.
+
+- **num_candidate_attributes_ratio**: Ratio of features considered for splitting at each node. A higher ratio (e.g., 0.9) considers more features, potentially improving performance but increasing computation. For the Titanic dataset, this could mean considering almost all features like 'Sex', 'Age', 'Pclass', 'Fare' at each split.
+
+- **split_axis**: Strategy for splitting nodes. "AXIS_ALIGNED" considers splits along individual feature axes, while "SPARSE_OBLIQUE" can consider combinations of features. For instance, "SPARSE_OBLIQUE" might create splits based on a combination of 'Age' and 'Fare', capturing more complex patterns in the Titanic dataset.
+    - **sparse_oblique_normalization**: Normalization method for oblique splits. "STANDARD_DEVIATION" normalizes features based on their standard deviation. This could help in handling features with different scales like 'Fare' and 'Age'.
+    - **sparse_oblique_weights**: Determines whether weights are binary or continuous for oblique splits. "CONTINUOUS" allows for more nuanced splits.
+    - **sparse_oblique_num_projections_exponent**: Exponent controlling the number of projections considered for sparse oblique splits. Higher values (e.g., 1.5) allow for more complex interactions between features.
 
 ### 4.4 Final Hyperparameter Settings Used
 
