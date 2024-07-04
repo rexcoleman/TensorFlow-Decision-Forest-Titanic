@@ -201,6 +201,7 @@ Hyperparameter tuning is a crucial step in improving model performance. This inv
 ### 3.5 Model Ensembling
 
 Model ensembling involves combining multiple models to improve overall performance. Techniques used in this project include:
+- An ensemble of 100 models with different seeds was created to combine their results.
 - **Voting Ensemble**: Combining predictions from multiple models and using a majority vote or averaging to make the final prediction.
 - **Stacking**: Training a meta-model on the predictions of several base models to achieve better performance.
 - **Bagging and Boosting**: Implementing methods like [Bagging (Bootstrap Aggregating)](https://github.com/rexcoleman/Data-Science-Model-Selection-in-Cybersecurity/blob/main/README.md#bootstrap-aggregating-bagging) and [Boosting](https://github.com/rexcoleman/Data-Science-Model-Selection-in-Cybersecurity/blob/main/README.md#2-boosting-methods) to reduce variance and bias in the model.
@@ -247,66 +248,23 @@ For this project, Gradient Boosted Trees (GBTs) were selected based on the follo
 
 By leveraging TensorFlow Decision Forests (TF-DF) and selecting Gradient Boosted Trees, the project aims to achieve the best possible performance, ensuring robust and accurate predictions. The choice of GBTs is grounded in their proven ability to handle complex data structures and deliver high accuracy, making them ideal for the project's objectives.
 
-
-
-
-
-# 5. Evaluation and Results
-
-## 5.1 Model Performance Metrics
-
-The performance of the models was evaluated using [accuracy](https://github.com/rexcoleman/Data-Science-Model-Selection-in-Cybersecurity/blob/main/README.md#accuracy) and [loss](https://github.com/rexcoleman/Data-Science-Model-Selection-in-Cybersecurity/blob/main/README.md#logarithmic-loss-log-loss
-) metrics. These metrics help in understanding how well the model is performing on the classification task.
-
-## 5.2 Comparison of Different Models and Parameters
-
-Different models and parameters were compared to identify the best performing model. This involved training a baseline [Gradient Boosted Trees (GBT) / Gradient Boosting Machines (GBM)](https://github.com/rexcoleman/Data-Science-Model-Selection-in-Cybersecurity/blob/main/README.md#gradient-boosting-machines-gbm) model using TensorFlow Decision Forests with default parameters, then improving these parameters, tuning the hyperparameters, and finally creating an ensemble of models.
-
-## 5.3 Final Model Selection and Justification
-
-### Titanic Competition with TensorFlow Decision Forests
-
-This notebook will guide you through the process of training a baseline Gradient Boosted Trees Model using TensorFlow Decision Forests and creating a submission for the Titanic competition.
-
-This notebook demonstrates:
-
-- Basic pre-processing steps, such as tokenizing passenger names and splitting ticket names into parts.
-- Training a Gradient Boosted Trees (GBT) model with default parameters.
-- Improving the default parameters of the GBT model.
-- Tuning the parameters of the GBT models.
-- Training and ensembling multiple GBT models.
-
-### Imports and Dependencies
-
-- Importing necessary libraries and loading the dataset.
-- Preprocessing the dataset to tokenize names and extract ticket prefixes.
-
-### Model Training Steps
-
-1. **Train Model with Default Parameters**:
-    - A baseline GBT model is trained with default parameters.
-    - The accuracy and loss metrics are computed.
-
-2. **Train Model with Improved Default Parameters**:
-    - Specific parameters are set to improve the GBT model's performance.
-    - The new model is trained and evaluated.
-
-3. **Hyperparameter Tuning**:
-    - Hyperparameter tuning is performed using a random search.
-    - The tuner object is configured with the search space, optimizer, trial, and objective.
-    - The tuned model's performance is evaluated.
-
-4. **Ensemble of Models**:
-    - An ensemble of 100 models with different seeds is created to combine their results.
-    - This approach aims to reduce the random aspects related to creating ML models.
-    - The final ensemble model is evaluated and used for making predictions.
-
-### Results Summary
+## 4. Results
 
 - The initial model trained with default parameters achieved an accuracy of 0.8261 and a loss of 0.8609.
 - After improving the default parameters, the model achieved an accuracy of 0.7826 and a loss of 1.0587.
 - Hyperparameter tuning resulted in a model with an accuracy of 0.8630 and a loss of 0.6750.
 - The ensemble of models provided a robust solution by averaging predictions from multiple models, resulting in a reliable final submission.
+
+
+
+4. **Ensemble of Models**:
+
+    - This approach aims to reduce the random aspects related to creating ML models.
+    - The final ensemble model is evaluated and used for making predictions.
+
+### Results Summary
+
+
 
 The final model selection was based on the performance metrics, with the hyperparameter-tuned model showing the best accuracy and loss values. The ensemble approach further enhanced the reliability of the predictions, making it the chosen model for submission.
 
