@@ -313,6 +313,9 @@ This notebook demonstrates:
 
 The final model selection was based on the performance metrics, with the hyperparameter-tuned model showing the best accuracy and loss values. The ensemble approach further enhanced the reliability of the predictions, making it the chosen model for submission.
 
+## 6. References
+- **Original Kaggle Notebook**: [Gusthema, achoum, 2023, Titanic competition w/ TensorFlow Decision Forests](https://www.kaggle.com/code/gusthema/titanic-competition-w-tensorflow-decision-forests)
+
 
 
 
