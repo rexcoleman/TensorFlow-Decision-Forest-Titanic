@@ -32,9 +32,7 @@ This project involves the comprehensive evaluation and optimization of [TensorFl
 5. [Conclusion](#5-conclusion)
     - [5.1 Summary](#51-summary)
     - [5.2 Future Work](#52-future-work)
-8. [Appendices](#8-appendices)
-    - [8.1 Additional Charts, Graphs, or Code Snippets](#81-additional-charts-graphs-or-code-snippets)
-    - [8.2 References or Further Reading](#82-references-or-further-reading)
+6. [References](#6-references)
 
 ## 1. Introduction
 
