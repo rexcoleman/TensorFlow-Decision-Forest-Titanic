@@ -263,13 +263,13 @@ The final model, leveraging Gradient Boosted Trees, showcased a notable improvem
 
 For aspiring data scientists, this project serves as a comprehensive guide on how to approach model selection, hyperparameter tuning, and performance optimization. The insights gained here are invaluable for tackling similar classification tasks in cybersecurity and other domains.
 
-5.2 ### Future Work
+### 5.2 Future Work
 
 Future enhancements to this project could include:
 
 - **Exploring Additional Hyperparameters**: Investigating other hyperparameters and their interactions could uncover further performance gains.
 - **Integrating Deep Learning Techniques**: Combining decision forests with deep learning models could potentially lead to even more powerful predictive models.
-- **Applying to Diverse Datasets**: Testing the optimized model on different datasets to validate its robustness and generalizability.
+- **Applying to Diverse Cybersecurity Focused Datasets**: Testing the optimized model on different datasets to validate its robustness and generalizability.
 
 By continuously refining the approach and exploring new techniques, the potential for creating highly accurate and efficient models remains vast.
 
