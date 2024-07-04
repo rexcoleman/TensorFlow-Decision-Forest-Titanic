@@ -28,7 +28,7 @@ This project involves the comprehensive evaluation and optimization of [TensorFl
         - [3.5.2 Types of Decision Forests](#352-types-of-decision-forests)
         - [3.5.3 Choosing the Right Decision Forest](#353-choosing-the-right-decision-forest)
         - [3.5.4 Justification for Using Gradient Boosted Trees (GBTs)](#354-justification-for-using-gradient-boosted-trees-gbts)
-4. [Evaluation and Results](#4-evaluation-and-results)
+4. [Results](#4-evaluation-and-results)
     - [4.1 Model Performance Metrics](#41-model-performance-metrics)
     - [4.2 Comparison of Different Models and Parameters](#42-comparison-of-different-models-and-parameters)
     - [4.3 Final Model Selection and Justification](#43-final-model-selection-and-justification)
