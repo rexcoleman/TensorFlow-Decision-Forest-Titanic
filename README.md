@@ -30,9 +30,8 @@ This project involves the comprehensive evaluation and optimization of [TensorFl
         - [3.5.4 Justification for Using Gradient Boosted Trees (GBTs)](#354-justification-for-using-gradient-boosted-trees-gbts)
 4. [Results](#4-results)
 5. [Conclusion](#5-conclusion)
-    - [7.1 Summary of Findings](#71-summary-of-findings)
-    - [7.2 Lessons Learned](#72-lessons-learned)
-    - [7.3 Future Work](#73-future-work)
+    - [5.1 Summary](#51-summary)
+    - [5.2 Future Work](#52-future-work)
 8. [Appendices](#8-appendices)
     - [8.1 Additional Charts, Graphs, or Code Snippets](#81-additional-charts-graphs-or-code-snippets)
     - [8.2 References or Further Reading](#82-references-or-further-reading)
@@ -249,6 +248,8 @@ By leveraging TensorFlow Decision Forests (TF-DF) and selecting Gradient Boosted
 
 ## 5. Conclusion
 
+### 5.1 Summary
+
 This project provided a thorough exploration and optimization of TensorFlow Decision Forests for a classification task, demonstrating the critical steps in data preprocessing, model training, and hyperparameter tuning. The systematic approach to model selection, particularly the focus on Gradient Boosted Trees, highlighted the importance of precise hyperparameter tuning in achieving superior model performance.
 
 Key takeaways from this project include:
@@ -262,7 +263,7 @@ The final model, leveraging Gradient Boosted Trees, showcased a notable improvem
 
 For aspiring data scientists, this project serves as a comprehensive guide on how to approach model selection, hyperparameter tuning, and performance optimization. The insights gained here are invaluable for tackling similar classification tasks in cybersecurity and other domains.
 
-### Future Work
+5.2 ### Future Work
 
 Future enhancements to this project could include:
 
