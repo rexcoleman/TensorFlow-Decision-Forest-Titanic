@@ -18,11 +18,10 @@ This project involves the comprehensive evaluation and optimization of [TensorFl
     - [3.3 Improved Model Training](#33-improved-model-training)
     - [3.4 Hyperparameter Tuning](#34-hyperparameter-tuning)
     - [3.5 Model Ensembling](#35-model-ensembling)
-    - [3.6 Relationship Between TF-DF and Decision Forests](#36-relationship-between-tf-df-and-decision-forests)
-        - [3.6.1 Understanding TensorFlow Decision Forests](#361-understanding-tensorflow-decision-forests)
-        - [3.6.2 Types of Decision Forests](#362-types-of-decision-forests)
-        - [3.6.3 Choosing the Right Decision Forest](#363-choosing-the-right-decision-forest)
-        - [3.6.4 Justification for Using Gradient Boosted Trees (GBTs)](#364-justification-for-using-gradient-boosted-trees-gbts)
+        - [3.5.1 Understanding TensorFlow Decision Forests](#351-understanding-tensorflow-decision-forests)
+        - [3.5.2 Types of Decision Forests](#352-types-of-decision-forests)
+        - [3.5.3 Choosing the Right Decision Forest](#353-choosing-the-right-decision-forest)
+        - [3.5.4 Justification for Using Gradient Boosted Trees (GBTs)](#354-justification-for-using-gradient-boosted-trees-gbts)
 4. [Hyperparameters Evaluated](#4-hyperparameters-evaluated)
     - [4.1 List of Hyperparameters Considered](#41-list-of-hyperparameters-considered)
     - [4.2 Impact of Each Hyperparameter on Model Performance](#42-impact-of-each-hyperparameter-on-model-performance)
@@ -122,13 +121,11 @@ Model ensembling involves combining multiple models to improve overall performan
 - **Stacking**: Training a meta-model on the predictions of several base models to achieve better performance.
 - **Bagging and Boosting**: Implementing methods like [Bagging (Bootstrap Aggregating)](https://github.com/rexcoleman/Data-Science-Model-Selection-in-Cybersecurity/blob/main/README.md#bootstrap-aggregating-bagging) and [Boosting](https://github.com/rexcoleman/Data-Science-Model-Selection-in-Cybersecurity/blob/main/README.md#2-boosting-methods) to reduce variance and bias in the model.
 
-### 3.6 Relationship Between TF-DF and Decision Forests
-
-#### 3.6.1 Understanding TensorFlow Decision Forests
+#### 3.5.1 Understanding TensorFlow Decision Forests
 
 TensorFlow Decision Forests (TF-DF) is an open-source library for training, evaluating, and serving decision forest models within the TensorFlow ecosystem. Decision forests, including Random Forests, Extremely Randomized Trees, and Gradient Boosted Trees, are ensemble learning methods that combine the predictions of multiple decision trees to produce a single output. TF-DF simplifies the use of these models within TensorFlow, leveraging its ecosystem for easy integration with other TensorFlow tools and models.
 
-#### 3.6.2 Types of Decision Forests
+#### 3.5.2 Types of Decision Forests
 
 There are several types of decision forests, each with unique characteristics and suitable applications:
 
@@ -147,7 +144,7 @@ There are several types of decision forests, each with unique characteristics an
    - Strengths: High accuracy, excellent for ranking and regression tasks, often outperforms other models on structured/tabular data.
    - Suitable for: Tasks requiring high predictive accuracy, handling complex interactions in data, and problems where fine-tuned performance is essential.
 
-#### 3.6.3 Choosing the Right Decision Forest
+#### 3.5.3 Choosing the Right Decision Forest
 
 Choosing the appropriate decision forest depends on several factors:
 
@@ -156,7 +153,7 @@ Choosing the appropriate decision forest depends on several factors:
 - **Training Time**: Random Forests and Extra Trees are parallelizable and thus faster to train, while GBTs require more time due to their sequential nature.
 - **Overfitting Risk**: Extra Trees and Random Forests are robust to overfitting, whereas GBTs can overfit if not properly regularized.
 
-#### 3.6.4 Justification for Using Gradient Boosted Trees (GBTs)
+#### 3.5.4 Justification for Using Gradient Boosted Trees (GBTs)
 
 For this project, Gradient Boosted Trees (GBTs) were selected based on the following considerations:
 
