@@ -17,18 +17,19 @@ This project involves the comprehensive evaluation and optimization of [TensorFl
     - [3.2 Baseline Model Training](#32-baseline-model-training)
     - [3.3 Improved Model Training](#33-improved-model-training)
     - [3.4 Hyperparameter Tuning](#34-hyperparameter-tuning)
+         - [3.4.1 List of Hyperparameters Considered](#341-list-of-hyperparameters-considered)
+         - [3.4.2 Impact of Each Hyperparameter on Model Performance](#342-impact-of-each-hyperparameter-on-model-performance)
+         - [3.4.3 Range of Values Explored for Each Hyperparameter](#343-range-of-values-explored-for-each-hyperparameter)
+         - [3.4.4 Final Hyperparameter Settings Used](#344-final-hyperparameter-settings-used)
+         - [3.4.5 Additional Hyperparameters to Consider](#345-additional-hyperparameters-to-consider)
+         - [3.4.6 Expanded Ranges of Values to Consider](#346-expanded-ranges-of-values-to-consider)
     - [3.5 Model Ensembling](#35-model-ensembling)
         - [3.5.1 Understanding TensorFlow Decision Forests](#351-understanding-tensorflow-decision-forests)
         - [3.5.2 Types of Decision Forests](#352-types-of-decision-forests)
         - [3.5.3 Choosing the Right Decision Forest](#353-choosing-the-right-decision-forest)
         - [3.5.4 Justification for Using Gradient Boosted Trees (GBTs)](#354-justification-for-using-gradient-boosted-trees-gbts)
 4. [Hyperparameters Evaluated](#4-hyperparameters-evaluated)
-    - [4.1 List of Hyperparameters Considered](#41-list-of-hyperparameters-considered)
-    - [4.2 Impact of Each Hyperparameter on Model Performance](#42-impact-of-each-hyperparameter-on-model-performance)
-    - [4.3 Range of Values Explored for Each Hyperparameter](#43-range-of-values-explored-for-each-hyperparameter)
-    - [4.4 Final Hyperparameter Settings Used](#44-final-hyperparameter-settings-used)
-    - [4.5 Additional Hyperparameters to Consider](#45-additional-hyperparameters-to-consider)
-    - [4.6 Expanded Ranges of Values to Consider](#46-expanded-ranges-of-values-to-consider)
+
 5. [Evaluation and Results](#5-evaluation-and-results)
     - [5.1 Model Performance Metrics](#51-model-performance-metrics)
     - [5.2 Comparison of Different Models and Parameters](#52-comparison-of-different-models-and-parameters)
@@ -114,6 +115,91 @@ Hyperparameter tuning is a crucial step in improving model performance. This inv
 - **Random Search**: Randomly sampling hyperparameters from a defined space and selecting the best performing set.
 - **Bayesian Optimization**: Using probabilistic models to select hyperparameters that maximize the model's performance.
 
+#### 3.4.1 List of Hyperparameters Considered
+- **min_examples**: Minimum number of examples required to make a split.
+- **categorical_algorithm**: Strategies like "CART" and "RANDOM" for handling categorical features.
+- **growing_strategy**: Methods like "LOCAL" and "BEST_FIRST_GLOBAL" for growing the decision tree.
+- **max_depth**: Maximum depth of the tree.
+- **max_num_nodes**: Maximum number of nodes in the tree.
+- **shrinkage**: The learning rate for gradient boosting.
+- **num_candidate_attributes_ratio**: Ratio of candidate features to consider for splits.
+- **split_axis**: Strategies like "AXIS_ALIGNED" and "SPARSE_OBLIQUE" for splitting nodes.
+- **sparse_oblique_normalization**: Normalization methods for sparse oblique splits.
+- **sparse_oblique_weights**: Weight types for sparse oblique splits.
+- **sparse_oblique_num_projections_exponent**: Exponent for the number of projections in sparse oblique splits.
+
+#### 3.4.2 Impact of Each Hyperparameter on Model Performance
+- **min_examples**: Controls the minimum number of samples required to split an internal node. Higher values can prevent overfitting by ensuring each split is based on a sufficient number of samples.
+- **categorical_algorithm**: Determines how categorical features are handled. "CART" splits based on the most frequent category, while "RANDOM" chooses a random category for splits. For instance, with the Titanic dataset, 'Embarked' can be split differently, influencing the model's understanding of passenger embarkation ports.
+- **growing_strategy**: Defines how the decision tree is grown.
+    - **LOCAL**: Focuses on controlling tree depth, preventing over-complexity.
+    - **BEST_FIRST_GLOBAL**: Allows the tree to grow until a specified number of nodes is reached, which can capture more interactions between features like 'Age' and 'Fare'.
+- **max_depth**: Limits the depth of the tree to control complexity. For example, a max depth of 8 might capture complex interactions but risk overfitting.
+- **max_num_nodes**: Sets the maximum number of nodes, allowing for finer decision boundaries. More nodes might help the model distinguish between different groups of passengers.
+- **shrinkage**: Controls the learning rate, influencing how much each tree contributes to the final model.
+- **num_candidate_attributes_ratio**: Specifies the fraction of features to consider for each split, affecting how diverse the splits can be.
+- **split_axis**: Determines the method of node splitting.
+    - **AXIS_ALIGNED**: Splits based on a single feature.
+    - **SPARSE_OBLIQUE**: Uses a combination of features, providing more flexibility but increasing complexity.
+- **sparse_oblique_normalization**: Defines how to normalize feature weights in sparse oblique splits, impacting how the model handles feature scales.
+- **sparse_oblique_weights**: Specifies the type of weights for sparse oblique splits.
+- **sparse_oblique_num_projections_exponent**: Sets the exponent for the number of projections, affecting the complexity of splits.
+
+#### 3.4.3 Range of Values Explored for Each Hyperparameter
+- **min_examples**: [2, 5, 7, 10]
+- **categorical_algorithm**: ["CART", "RANDOM"]
+- **growing_strategy**: ["LOCAL", "BEST_FIRST_GLOBAL"]
+- **max_depth**: [3, 4, 5, 6, 8]
+- **max_num_nodes**: [16, 32, 64, 128, 256]
+- **shrinkage**: [0.02, 0.05, 0.10, 0.15]
+- **num_candidate_attributes_ratio**: [0.2, 0.5, 0.9, 1.0]
+- **split_axis**: ["AXIS_ALIGNED", "SPARSE_OBLIQUE"]
+- **sparse_oblique_normalization**: ["NONE", "STANDARD_DEVIATION", "MIN_MAX"]
+- **sparse_oblique_weights**: ["BINARY", "CONTINUOUS"]
+- **sparse_oblique_num_projections_exponent**: [1.0, 1.5]
+
+#### 3.4.4 Final Hyperparameter Settings Used
+- **min_examples**: 5
+- **categorical_algorithm**: CART
+- **growing_strategy**: BEST_FIRST_GLOBAL
+- **max_depth**: 6
+- **max_num_nodes**: 128
+- **shrinkage**: 0.1
+- **num_candidate_attributes_ratio**: 0.5
+- **split_axis**: AXIS_ALIGNED
+- **sparse_oblique_normalization**: STANDARD_DEVIATION
+- **sparse_oblique_weights**: CONTINUOUS
+- **sparse_oblique_num_projections_exponent**: 1.5
+
+#### 3.4.5 Additional Hyperparameters to Consider
+- **max_features**: Number of features to consider when looking for the best split.
+    - **Justification**: Limiting the number of features can reduce overfitting and improve generalization.
+    - **Suggested range**: [0.5, 0.7, 0.9, 1.0]
+- **subsample**: Fraction of samples to use for fitting individual base learners.
+    - **Justification**: Introducing randomness by using only a fraction of samples can help prevent overfitting.
+    - **Suggested range**: [0.5, 0.7, 0.9, 1.0]
+- **learning_rate**: Weight of each individual tree.
+    - **Justification**: Fine-tuning the learning rate can improve model performance and generalization.
+    - **Suggested range**: [0.01, 0.05, 0.1, 0.2]
+- **num_trees**: Number of trees in the forest.
+    - **Justification**: More trees can improve performance but increase computation time.
+    - **Suggested range**: [50, 100, 200, 500]
+- **min_impurity_decrease**: Threshold for a split to be considered.
+    - **Justification**: Controls the minimum decrease in impurity required to split a node, balancing model complexity and performance.
+    - **Suggested range**: [0.0, 0.01, 0.05, 0.1]
+
+#### 3.4.6 Expanded Ranges of Values to Consider
+- **max_depth**: [2, 4, 6, 8, 10, 12]
+    - **Justification**: Including shallower and deeper trees can help find the optimal depth for capturing patterns without overfitting.
+- **max_num_nodes**: [16, 32, 64, 128, 256, 512]
+    - **Justification**: More nodes can allow for finer decision boundaries and better capture complex interactions.
+- **shrinkage**: [0.01, 0.05, 0.10, 0.15, 0.2]
+    - **Justification**: Testing lower and higher values can help find the optimal learning rate.
+- **num_candidate_attributes_ratio**: [0.1, 0.3, 0.5, 0.7, 0.9, 1.0]
+    - **Justification**: Adding intermediate values provides finer granularity in tuning, improving the model's ability to generalize.
+- **sparse_oblique_num_projections_exponent**: [1.0, 1.2, 1.5, 1.8]
+    - **Justification**: Including values between the existing range can provide better tuning and model performance.
+
 ### 3.5 Model Ensembling
 
 Model ensembling involves combining multiple models to improve overall performance. Techniques used in this project include:
@@ -164,92 +250,8 @@ For this project, Gradient Boosted Trees (GBTs) were selected based on the follo
 By leveraging TensorFlow Decision Forests (TF-DF) and selecting Gradient Boosted Trees, the project aims to achieve the best possible performance, ensuring robust and accurate predictions. The choice of GBTs is grounded in their proven ability to handle complex data structures and deliver high accuracy, making them ideal for the project's objectives.
 
 
-## 4. Hyperparameters Evaluated
 
-### 4.1 List of Hyperparameters Considered
-- **min_examples**: Minimum number of examples required to make a split.
-- **categorical_algorithm**: Strategies like "CART" and "RANDOM" for handling categorical features.
-- **growing_strategy**: Methods like "LOCAL" and "BEST_FIRST_GLOBAL" for growing the decision tree.
-- **max_depth**: Maximum depth of the tree.
-- **max_num_nodes**: Maximum number of nodes in the tree.
-- **shrinkage**: The learning rate for gradient boosting.
-- **num_candidate_attributes_ratio**: Ratio of candidate features to consider for splits.
-- **split_axis**: Strategies like "AXIS_ALIGNED" and "SPARSE_OBLIQUE" for splitting nodes.
-- **sparse_oblique_normalization**: Normalization methods for sparse oblique splits.
-- **sparse_oblique_weights**: Weight types for sparse oblique splits.
-- **sparse_oblique_num_projections_exponent**: Exponent for the number of projections in sparse oblique splits.
 
-### 4.2 Impact of Each Hyperparameter on Model Performance
-- **min_examples**: Controls the minimum number of samples required to split an internal node. Higher values can prevent overfitting by ensuring each split is based on a sufficient number of samples.
-- **categorical_algorithm**: Determines how categorical features are handled. "CART" splits based on the most frequent category, while "RANDOM" chooses a random category for splits. For instance, with the Titanic dataset, 'Embarked' can be split differently, influencing the model's understanding of passenger embarkation ports.
-- **growing_strategy**: Defines how the decision tree is grown.
-    - **LOCAL**: Focuses on controlling tree depth, preventing over-complexity.
-    - **BEST_FIRST_GLOBAL**: Allows the tree to grow until a specified number of nodes is reached, which can capture more interactions between features like 'Age' and 'Fare'.
-- **max_depth**: Limits the depth of the tree to control complexity. For example, a max depth of 8 might capture complex interactions but risk overfitting.
-- **max_num_nodes**: Sets the maximum number of nodes, allowing for finer decision boundaries. More nodes might help the model distinguish between different groups of passengers.
-- **shrinkage**: Controls the learning rate, influencing how much each tree contributes to the final model.
-- **num_candidate_attributes_ratio**: Specifies the fraction of features to consider for each split, affecting how diverse the splits can be.
-- **split_axis**: Determines the method of node splitting.
-    - **AXIS_ALIGNED**: Splits based on a single feature.
-    - **SPARSE_OBLIQUE**: Uses a combination of features, providing more flexibility but increasing complexity.
-- **sparse_oblique_normalization**: Defines how to normalize feature weights in sparse oblique splits, impacting how the model handles feature scales.
-- **sparse_oblique_weights**: Specifies the type of weights for sparse oblique splits.
-- **sparse_oblique_num_projections_exponent**: Sets the exponent for the number of projections, affecting the complexity of splits.
-
-### 4.3 Range of Values Explored for Each Hyperparameter
-- **min_examples**: [2, 5, 7, 10]
-- **categorical_algorithm**: ["CART", "RANDOM"]
-- **growing_strategy**: ["LOCAL", "BEST_FIRST_GLOBAL"]
-- **max_depth**: [3, 4, 5, 6, 8]
-- **max_num_nodes**: [16, 32, 64, 128, 256]
-- **shrinkage**: [0.02, 0.05, 0.10, 0.15]
-- **num_candidate_attributes_ratio**: [0.2, 0.5, 0.9, 1.0]
-- **split_axis**: ["AXIS_ALIGNED", "SPARSE_OBLIQUE"]
-- **sparse_oblique_normalization**: ["NONE", "STANDARD_DEVIATION", "MIN_MAX"]
-- **sparse_oblique_weights**: ["BINARY", "CONTINUOUS"]
-- **sparse_oblique_num_projections_exponent**: [1.0, 1.5]
-
-### 4.4 Final Hyperparameter Settings Used
-- **min_examples**: 5
-- **categorical_algorithm**: CART
-- **growing_strategy**: BEST_FIRST_GLOBAL
-- **max_depth**: 6
-- **max_num_nodes**: 128
-- **shrinkage**: 0.1
-- **num_candidate_attributes_ratio**: 0.5
-- **split_axis**: AXIS_ALIGNED
-- **sparse_oblique_normalization**: STANDARD_DEVIATION
-- **sparse_oblique_weights**: CONTINUOUS
-- **sparse_oblique_num_projections_exponent**: 1.5
-
-### 4.5 Additional Hyperparameters to Consider
-- **max_features**: Number of features to consider when looking for the best split.
-    - **Justification**: Limiting the number of features can reduce overfitting and improve generalization.
-    - **Suggested range**: [0.5, 0.7, 0.9, 1.0]
-- **subsample**: Fraction of samples to use for fitting individual base learners.
-    - **Justification**: Introducing randomness by using only a fraction of samples can help prevent overfitting.
-    - **Suggested range**: [0.5, 0.7, 0.9, 1.0]
-- **learning_rate**: Weight of each individual tree.
-    - **Justification**: Fine-tuning the learning rate can improve model performance and generalization.
-    - **Suggested range**: [0.01, 0.05, 0.1, 0.2]
-- **num_trees**: Number of trees in the forest.
-    - **Justification**: More trees can improve performance but increase computation time.
-    - **Suggested range**: [50, 100, 200, 500]
-- **min_impurity_decrease**: Threshold for a split to be considered.
-    - **Justification**: Controls the minimum decrease in impurity required to split a node, balancing model complexity and performance.
-    - **Suggested range**: [0.0, 0.01, 0.05, 0.1]
-
-### 4.6 Expanded Ranges of Values to Consider
-- **max_depth**: [2, 4, 6, 8, 10, 12]
-    - **Justification**: Including shallower and deeper trees can help find the optimal depth for capturing patterns without overfitting.
-- **max_num_nodes**: [16, 32, 64, 128, 256, 512]
-    - **Justification**: More nodes can allow for finer decision boundaries and better capture complex interactions.
-- **shrinkage**: [0.01, 0.05, 0.10, 0.15, 0.2]
-    - **Justification**: Testing lower and higher values can help find the optimal learning rate.
-- **num_candidate_attributes_ratio**: [0.1, 0.3, 0.5, 0.7, 0.9, 1.0]
-    - **Justification**: Adding intermediate values provides finer granularity in tuning, improving the model's ability to generalize.
-- **sparse_oblique_num_projections_exponent**: [1.0, 1.2, 1.5, 1.8]
-    - **Justification**: Including values between the existing range can provide better tuning and model performance.
 
 # 5. Evaluation and Results
 
